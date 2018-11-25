@@ -25,7 +25,8 @@ public class CanvasView extends View {
         this.random = new Random();
     }
 
-    public void initializeForme(int w, int h) {
+    //TODO initialiser les formes en fonction de la taille du Canvas
+    private void initializeForme(int w, int h) {
         // w*0.2 < x < w*0.8
         // h*0.2 < y < h*0.8
         // w*0.05 < L < w*0.15
@@ -67,30 +68,83 @@ public class CanvasView extends View {
         }
     }
 
-    public void initializeForme() {
-        int nbFormes = 0;
-        while (nbFormes < 5) {
+    public void initializeForme(int nbRects, int nbCarres, int nbCercles) {
+        this.addNRect(nbRects);
+        this.addNCarre(nbCarres);
+        this.addNCercle(nbCercles);
+    }
+
+    private void addNRect(int nb) {
+        int nbRects = 0;
+        while (nbRects < nb) {
             int x = this.random.nextInt(700);
             int y = this.random.nextInt(1200);
             int L = this.random.nextInt(200)+100;
             int l = this.random.nextInt(200)+100;
             Rectangle newR = new Rectangle(x,y,L,l);
-            if (this.formes.isEmpty()) {
+            if (this.formes.isEmpty() && L != l) {
                 this.formes.add(newR);
-                nbFormes++;
-            } else {
+                nbRects++;
+            } else if (L != l){
                 boolean drawable = true;
                 for (Forme forme : this.formes) {
-                    if (forme instanceof Rectangle) {
-                        Rectangle r = (Rectangle) forme;
-                        if (r.intersects(newR)) {
-                            drawable = false;
-                        }
+                    if (forme.intersects(newR)) {
+                        drawable = false;
                     }
                 }
                 if (drawable) {
                     this.formes.add(newR);
-                    nbFormes++;
+                    nbRects++;
+                }
+            }
+        }
+    }
+
+    private void addNCarre(int nb) {
+        int nbCarres = 0;
+        while (nbCarres < nb) {
+            int x = this.random.nextInt(700);
+            int y = this.random.nextInt(1200);
+            int c = this.random.nextInt(200)+100;
+            Carre newC = new Carre(x,y,c);
+            if (this.formes.isEmpty()) {
+                this.formes.add(newC);
+                nbCarres++;
+            } else {
+                boolean drawable = true;
+                for (Forme forme : this.formes) {
+                    if (forme.intersects(newC)) {
+                        drawable = false;
+                    }
+                }
+                if (drawable) {
+                    this.formes.add(newC);
+                    nbCarres++;
+                }
+            }
+        }
+    }
+
+    private void addNCercle(int nb) {
+        int nbCercles = 0;
+        while (nbCercles < nb) {
+            int x = this.random.nextInt(700);
+            int y = this.random.nextInt(1200);
+            int r = this.random.nextInt(200)+100;
+            Cercle newC = new Cercle(x,y,r);
+            if (this.formes.isEmpty()) {
+                this.formes.add(newC);
+                nbCercles++;
+            } else {
+                boolean drawable = true;
+                for (Forme forme : this.formes) {
+                    if (forme.intersects(newC)) {
+                        drawable = false;
+                    }
+                }
+                if (drawable) {
+                    this.formes.add(newC);
+                    nbCercles++;
                 }
             }
         }
@@ -120,7 +174,6 @@ public class CanvasView extends View {
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.performClick();
         super.onSizeChanged(w, h, oldw, oldh);
 
         // your Canvas will draw onto the defined Bitmap

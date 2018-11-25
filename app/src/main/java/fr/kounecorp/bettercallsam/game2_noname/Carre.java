@@ -2,11 +2,11 @@ package fr.kounecorp.bettercallsam.game2_noname;
 
 import android.graphics.Canvas;
 
-public class Rectangle extends Forme {
+public class Carre extends Forme {
 
-    public Rectangle(float x, float y, float longueur, float largeur) {
+    public Carre(float x, float y, float c) {
         super();
-        super.setForme(x, y,x+longueur,y+largeur);
+        super.setForme(x, y,x+c,y+c);
     }
 
     @Override
