@@ -12,7 +12,10 @@ public class Rectangle extends Forme {
     @Override
     public void display(Canvas canvas) {
         if (isTouched()) {
-            canvas.drawRect(getForme(), this.fillGreen());
+            if (isChoosen())
+                canvas.drawRect(getForme(), this.fillGreen());
+            else
+                canvas.drawRect(getForme(), this.fillRed());
         } else {
             canvas.drawRect(getForme(), this.noFill());
         }

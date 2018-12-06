@@ -24,4 +24,14 @@
     <string name="continuer">Continuer</string>
     <string name="BackInfo">Veuillez appuyer sur Continuer</string>
 
+    <string name="infoGame2">Appuye sur tous les %1$s le plus rapidement possible ! Attention à ne pas faire d\'erreur !</string>
+    <string name="textScoreGame2">score :&#160;</string>
+    <string name="textScoreNGame2">score %1$d :&#160;</string>
+
+    <plurals name="scoreValeurGame2">
+        <item quantity="zero">%1$d pt</item>
+        <item quantity="one">%1$d pt</item>
+        <item quantity="other">%1$d pts</item>
+    </plurals>
+
 </resources>

@@ -20,7 +20,7 @@ public class ReactTime extends AppCompatActivity {
     public final static int BLEU  = 0xFF2B87D1;
     public final static int JAUNE = 0xFFFFD700;
 
-    private final int MAXTRIES = 5;
+    private final static int MAXTRIES = 5;
 
     private Button b;
     private TextView triesText;
@@ -68,7 +68,7 @@ public class ReactTime extends AppCompatActivity {
                 }
                 break;
         }
-        if (this.tries == 1) {
+        if (this.tries == ReactTime.MAXTRIES) {
             this.triesText.setTextColor(JAUNE);
             lunchPopUp();
         }
@@ -87,7 +87,7 @@ public class ReactTime extends AppCompatActivity {
         this.tries = 0;
         this.infoText.setText(R.string.infoInit);
         this.avgText.setText(getString(R.string.moyenneValeur, this.avg));
-        this.triesText.setText(getString(R.string.essaisValeur, this.tries, this.MAXTRIES));
+        this.triesText.setText(getString(R.string.essaisValeur, this.tries, ReactTime.MAXTRIES));
     }
 
     private void firstClick() {
@@ -128,7 +128,7 @@ public class ReactTime extends AppCompatActivity {
         this.somTime += this.reactionTime;
         this.avg = this.somTime/this.tries;
         this.avgText.setText(getString(R.string.moyenneValeur, this.avg));
-        this.triesText.setText(getString(R.string.essaisValeur, this.tries, this.MAXTRIES));
+        this.triesText.setText(getString(R.string.essaisValeur, this.tries, ReactTime.MAXTRIES));
     }
 
     private void lunchPopUp() {

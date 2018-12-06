@@ -12,7 +12,10 @@ public class Cercle extends Forme {
     @Override
     public void display(Canvas canvas) {
         if (isTouched()) {
-            canvas.drawOval(getForme(), this.fillGreen());
+            if (isChoosen())
+                canvas.drawOval(getForme(), this.fillGreen());
+            else
+                canvas.drawOval(getForme(), this.fillRed());
         } else {
             canvas.drawOval(getForme(), this.noFill());
         }

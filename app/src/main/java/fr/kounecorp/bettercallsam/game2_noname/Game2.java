@@ -18,8 +18,14 @@ public class Game2 extends Activity {
 
         myCanvas = findViewById(R.id.canvasView);
         TextView infoGame = findViewById(R.id.game2Info);
+        TextView valScore = findViewById(R.id.valScore);
 
-        myCanvas.initializeForme(3,3,3);
+        myCanvas.setScoreValueView(valScore);
+        myCanvas.setInfoGameView(infoGame);
+        myCanvas.setScoreReactTime(getIntent().getIntExtra("avg",0));
+        myCanvas.initializeForme(1,1,1);
+
+
     }
 
     public void clearCanvas(View v) {

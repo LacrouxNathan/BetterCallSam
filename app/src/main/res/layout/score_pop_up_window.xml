@@ -13,7 +13,7 @@
 
 
     <TextView
-        android:id="@+id/scoreText"
+        android:id="@+id/bilanTextPopUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -25,7 +25,7 @@
         android:id="@+id/LayoutMoy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/scoreText"
+        android:layout_below="@id/bilanTextPopUp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="40dp">

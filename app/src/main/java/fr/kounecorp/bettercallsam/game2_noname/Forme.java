@@ -11,8 +11,11 @@ public abstract class Forme {
     private Paint strokePaint;
     private RectF forme;
     private boolean touched;
+    private boolean choosen;
 
     public Forme() {
+        this.touched = false;
+        this.choosen = false;
         // fill
         fillPaint = new Paint();
         fillPaint.setStyle(Paint.Style.FILL);
@@ -36,6 +39,14 @@ public abstract class Forme {
 
     public boolean isTouched() {
         return this.touched;
+    }
+
+    public boolean isChoosen() {
+        return this.choosen;
+    }
+
+    public void setChoosen(boolean choosen) {
+        this.choosen = choosen;
     }
 
     private boolean contains(float x, float y) {
