@@ -11,4 +11,6 @@
     <color name="RTGris">#DCDCDC</color>
     <color name="RTJaune">#FFD700</color>
 
+    <color name="defaultGris">#919191</color>
+
 </resources>

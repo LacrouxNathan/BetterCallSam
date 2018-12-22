@@ -15,7 +15,7 @@
     <string name="infoEnd">Appuyer pour continuer.</string>
 
     <string name="moyenneTexte">Moyenne :&#160;</string>
-    <string name="moyenneValeur">%1$dms</string>
+    <string name="moyenneValeur">%1$d ms</string>
     <string name="essaisTexte">Essais :&#160;</string>
     <string name="essaisValeur">%1$d sur %2$d</string>
 
@@ -24,9 +24,11 @@
     <string name="continuer">Continuer</string>
     <string name="BackInfo">Veuillez appuyer sur Continuer</string>
 
-    <string name="infoGame2">Appuye sur tous les %1$s le plus rapidement possible ! Attention à ne pas faire d\'erreur !</string>
+    <string name="infoGame2">Appuye sur tous les &lt;b>%1$s&lt;/b> le plus rapidement possible ! Attention à ne pas faire d\'erreur !</string>
     <string name="textScoreGame2">score :&#160;</string>
-    <string name="textScoreNGame2">score %1$d :&#160;</string>
+    <string name="textScoreNGame2">Score %1$d :&#160;</string>
+    <string name="textTempsGame2">Temps :&#160;</string>
+    <string name="tempsValeurGame2">%1$s secondes</string>
 
     <plurals name="scoreValeurGame2">
         <item quantity="zero">%1$d pt</item>

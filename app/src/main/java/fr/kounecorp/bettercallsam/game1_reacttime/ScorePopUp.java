@@ -22,14 +22,13 @@ public class ScorePopUp extends Activity {
         setContentView(R.layout.score_pop_up_window);
         int r = ReactTime.ROUGE;
         int g = ReactTime.VERT;
+        int y = ReactTime.JAUNE;
 
         TextView avgScore = findViewById(R.id.avgScore);
         avg = getIntent().getIntExtra("avg",0);
-        if (avg >= 450) {
-            avgScore.setTextColor(r);
-        } else {
-            avgScore.setTextColor(g);
-        }
+
+        int col = (avg >= 450) ? r : ((avg >= 250) ? g : y);
+        avgScore.setTextColor(col);
         avgScore.setText(getString(R.string.moyenneValeur, avg));
 
         Button continuer = findViewById(R.id.btnContinuer);

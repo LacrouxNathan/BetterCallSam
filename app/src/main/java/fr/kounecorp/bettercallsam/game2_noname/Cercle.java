@@ -4,9 +4,9 @@ import android.graphics.Canvas;
 
 public class Cercle extends Forme {
 
-    public Cercle(float x, float y, float rayon) {
+    public Cercle(float x, float y, float diametre) {
         super();
-        super.setForme(x,y,x+rayon,y+rayon);
+        super.setForme(x,y,x+diametre,y+diametre);
     }
 
     @Override

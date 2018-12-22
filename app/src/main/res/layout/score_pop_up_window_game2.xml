@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/bilanTextGame2"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp">
+        android:layout_marginBottom="10dp">
 
         <TextView
             android:id="@+id/score1Text"
@@ -35,13 +35,13 @@
             android:layout_height="wrap_content"
             android:text="@string/textScoreNGame2"
             android:textColor="@android:color/black"
-            android:textSize="30sp" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/score1Val"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="30sp" />
+            android:textSize="24sp" />
 
     </LinearLayout>
 
@@ -50,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/LayoutScore1"
-        android:layout_marginBottom="20dp">
+        android:layout_marginBottom="10dp">
 
         <TextView
             android:id="@+id/score2Text"
@@ -58,13 +58,13 @@
             android:layout_height="wrap_content"
             android:text="@string/textScoreNGame2"
             android:textColor="@android:color/black"
-            android:textSize="30sp" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/score2Val"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="30sp" />
+            android:textSize="24sp" />
 
     </LinearLayout>
 
@@ -73,7 +73,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/LayoutScore2"
-        android:layout_marginBottom="40dp">
+        android:layout_marginBottom="10dp">
 
         <TextView
             android:id="@+id/score3Text"
@@ -81,13 +81,36 @@
             android:layout_height="wrap_content"
             android:text="@string/textScoreNGame2"
             android:textColor="@android:color/black"
-            android:textSize="30sp" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/score3Val"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="30sp" />
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LayoutTemps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/LayoutScore3"
+        android:layout_marginBottom="40dp">
+
+        <TextView
+            android:id="@+id/tempsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/textTempsGame2"
+            android:textColor="@android:color/black"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/tempsVal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp" />
 
     </LinearLayout>
 
@@ -95,7 +118,7 @@
         android:id="@+id/btnContinuer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/LayoutScore3"
+        android:layout_below="@id/LayoutTemps"
         android:layout_centerHorizontal="true"
         android:text="@string/continuer"
         android:textAllCaps="false"

@@ -2,8 +2,8 @@ package fr.kounecorp.bettercallsam.game2_noname;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.text.Html;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,8 +19,18 @@ import fr.kounecorp.bettercallsam.R;
 public class CanvasView extends View {
 
     private static final int NBPARTIESMAX = 3;
+    public static final int NBFORMESGAME1 = 3;
 
     private int scoreReactTime;
+
+    private int width;
+    private int height;
+
+    private int w05;
+    private int w80;
+
+    private int h05;
+    private int h80;
 
     private List<Forme> formes;
     private Random random;
@@ -29,6 +39,7 @@ public class CanvasView extends View {
     private int numPartie;
     private TextView scoreValue;
     private TextView infoGame;
+    private ChronometerMillis chrono;
 
     public CanvasView(Context c, AttributeSet attrs) {
         super(c, attrs);
@@ -36,73 +47,43 @@ public class CanvasView extends View {
         this.random = new Random();
         this.scores = new int[CanvasView.NBPARTIESMAX];
         this.numPartie = 0;
+        this.theChoosen = -1;
+        this.width = 0;
+        this.height = 0;
     }
 
-    //TODO initialiser les formes en fonction de la taille du Canvas
-    private void initializeForme(int w, int h) {
-        // w*0.2 < x < w*0.8
-        // h*0.2 < y < h*0.8
-        // w*0.05 < L < w*0.15
-        // h*0.05 < l < h*0.15
-        int nbFormes = 0;
-        int w10  = (int) (w*0.1);
-        int w20 = (int) (w*0.2);
-        int w80 = (int) (w*0.8);
+    public void initializeFormes(int nbAll) {
+        this.initializeFormes(nbAll,nbAll,nbAll);
+    }
 
-        int h10  = (int) (w*0.1);
-        int h20 = (int) (h*0.2);
-        int h80 = (int) (h*0.8);
-
-        while (nbFormes < 5) {
-            int x = this.random.nextInt(w80) + w20;
-            int y = this.random.nextInt(h80) + h20;
-            int L = this.random.nextInt(w20) + w10;
-            int l = this.random.nextInt(h20) + h10;
-            Rectangle newR = new Rectangle(x,y,L,l);
-
-            if (this.formes.isEmpty()) {
-                this.formes.add(newR);
-                nbFormes++;
-            } else {
-                boolean drawable = true;
-                for (Forme forme : this.formes) {
-                    if (forme instanceof Rectangle) {
-                        Rectangle r = (Rectangle) forme;
-                        if (r.intersects(newR)) {
-                            drawable = false;
-                        }
-                    }
-                }
-                if (drawable) {
-                    this.formes.add(newR);
-                    nbFormes++;
-                }
-            }
+    public void initializeFormes(int nbRects, int nbCarres, int nbCercles) {
+        int tmp = this.theChoosen;
+        while (this.theChoosen == tmp) {
+            this.theChoosen = this.random.nextInt(3);
         }
-    }
-
-    public void initializeForme(int nbRects, int nbCarres, int nbCercles) {
-        this.theChoosen = random.nextInt(3);
         this.printInfoGameOnView();
         this.printScoreNOnView(this.numPartie);
         this.addNRect(nbRects, (this.theChoosen == 0));
         this.addNCarre(nbCarres, (this.theChoosen == 1));
         this.addNCercle(nbCercles,(this.theChoosen == 2));
+        invalidate();
     }
 
     private void addNRect(int nb, boolean choosen) {
         int nbRects = 0;
+        int diffMin = 40;
+
         while (nbRects < nb) {
-            int x = this.random.nextInt(700);
-            int y = this.random.nextInt(1200);
-            int L = this.random.nextInt(200)+100;
-            int l = this.random.nextInt(200)+100;
+            int x = this.random.nextInt((this.w80-this.w05*2))+this.w05; // 5% à 70% width
+            int y = this.random.nextInt((this.h80-this.h05))+this.h05; // 5% à 75% height
+            int L = this.random.nextInt((this.w05*4))+this.w05*2; // 10% à 20% width
+            int l = this.random.nextInt((this.w05*4))+this.w05*2; // 10% à 20% width
             Rectangle newR = new Rectangle(x,y,L,l);
             newR.setChoosen(choosen);
-            if (this.formes.isEmpty() && !(L-20 < l && l < L+20)) {
+            if (this.formes.isEmpty() && !(L-diffMin < l && l < L+diffMin)) {
                 this.formes.add(newR);
                 nbRects++;
-            } else if (L != l){
+            } else if (!(L-diffMin < l && l < L+diffMin)){
                 boolean drawable = true;
                 for (Forme forme : this.formes) {
                     if (forme.intersects(newR)) {
@@ -120,9 +101,9 @@ public class CanvasView extends View {
     private void addNCarre(int nb, boolean choosen) {
         int nbCarres = 0;
         while (nbCarres < nb) {
-            int x = this.random.nextInt(700);
-            int y = this.random.nextInt(1200);
-            int c = this.random.nextInt(200)+100;
+            int x = this.random.nextInt((this.w80-this.w05*2))+this.w05; // 5% à 70% width
+            int y = this.random.nextInt((this.h80-this.h05))+this.h05; // 5% à 75% height
+            int c = this.random.nextInt((this.w05*4))+this.w05*2;  // 10% à 20% width
             Carre newC = new Carre(x,y,c);
             newC.setChoosen(choosen);
             if (this.formes.isEmpty()) {
@@ -146,10 +127,10 @@ public class CanvasView extends View {
     private void addNCercle(int nb, boolean choosen) {
         int nbCercles = 0;
         while (nbCercles < nb) {
-            int x = this.random.nextInt(700);
-            int y = this.random.nextInt(1200);
-            int r = this.random.nextInt(200)+100;
-            Cercle newC = new Cercle(x,y,r);
+            int x = this.random.nextInt((this.w80-this.w05*2))+this.w05; // 5% à 70% width
+            int y = this.random.nextInt((this.h80-this.h05))+this.h05; // 5% à 75% height
+            int d = this.random.nextInt((this.w05*4))+this.w05*2;  // 10% à 20% width
+            Cercle newC = new Cercle(x,y,d);
             newC.setChoosen(choosen);
             if (this.formes.isEmpty()) {
                 this.formes.add(newC);
@@ -167,6 +148,11 @@ public class CanvasView extends View {
                 }
             }
         }
+    }
+
+    public void setChrono(ChronometerMillis chrono) {
+        this.chrono = chrono;
+        this.chrono.setTextColor(getResources().getColor(android.R.color.black));
     }
 
     public void setScoreReactTime(int score) {
@@ -190,7 +176,8 @@ public class CanvasView extends View {
     }
 
     public void printInfoGameOnView() {
-        infoGame.setText(this.getContext().getString(R.string.infoGame2,this.getChoosenToString()));
+        String info = this.getContext().getString(R.string.infoGame2,this.getChoosenToString());
+        infoGame.setText(Html.fromHtml(info));
     }
 
     public void setScoreValueView(TextView t) {
@@ -209,6 +196,7 @@ public class CanvasView extends View {
         Intent scorePopUp = new Intent(this.getContext(), ScorePopUpGame2.class);
         scorePopUp.putExtra("avg", this.scoreReactTime);
         scorePopUp.putExtra("scores", this.scores);
+        scorePopUp.putExtra("time", this.chrono.getTimeElapsedInSeconds());
         this.getContext().startActivity(scorePopUp);
     }
 
@@ -233,12 +221,13 @@ public class CanvasView extends View {
     }
 
     private void nextGame(int nbFormeChoosenTouched) {
-        if (nbFormeChoosenTouched == this.numPartie+1) {
+        if (nbFormeChoosenTouched == this.numPartie+NBFORMESGAME1) {
             if (this.numPartie+1 < CanvasView.NBPARTIESMAX) {
                 this.clearCanvas();
-                this.initializeForme(this.numPartie+2,this.numPartie+2,this.numPartie+2);
+                this.initializeFormes(this.numPartie+NBFORMESGAME1+1);
                 this.numPartie++;
             } else {
+                chrono.stop();
                 lunchPopUp();
             }
         }
@@ -247,6 +236,16 @@ public class CanvasView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
+        this.width = getMeasuredWidth();
+        this.height = getMeasuredHeight();
+
+        this.w05 = (int) (this.width*0.05);
+        this.w80 = width - w05*4;
+
+        this.h05 = (int) (this.height*0.05);
+        this.h80 = height - h05*4;
+
         if (this.numPartie < CanvasView.NBPARTIESMAX) {
             for (Forme forme : this.formes) {
                 forme.display(canvas);
