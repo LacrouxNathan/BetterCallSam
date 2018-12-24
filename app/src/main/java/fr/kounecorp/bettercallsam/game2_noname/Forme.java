@@ -49,13 +49,12 @@ public abstract class Forme {
         this.choosen = choosen;
     }
 
-    private boolean contains(float x, float y) {
+    public boolean contains(float x, float y) {
         return forme.contains(x,y);
     }
 
     public boolean intersects(Forme f) {
         return RectF.intersects(this.forme,f.forme);
-        //return rect.intersects(r.x, r.y,r.x+r.L,r.y+r.l);
     }
 
     public Paint fillGreen() {
