@@ -8,7 +8,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 import fr.kounecorp.bettercallsam.R;
+import fr.kounecorp.bettercallsam.game3_equationrandom.EquationGame;
 
 public class ScorePopUpGame2 extends Activity {
 
@@ -19,11 +23,15 @@ public class ScorePopUpGame2 extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.score_pop_up_window_game2);
+
         int r = getResources().getColor(R.color.RTRouge);
         int g = getResources().getColor(R.color.RTVert);
         int y = getResources().getColor(R.color.RTJaune);
+
+        NumberFormat format = NumberFormat.getInstance(Locale.US);
+        format.setMinimumFractionDigits(2);
+        format.setMaximumFractionDigits(3);
 
         this.scoreReactTime = getIntent().getIntExtra("avg",0);
         this.scores = getIntent().getIntArrayExtra("scores");
@@ -61,17 +69,17 @@ public class ScorePopUpGame2 extends Activity {
 
         col = (this.time <= 20) ? ((this.time <= 10) ? y : g) : r;
         tempsVal.setTextColor(col);
-        tempsVal.setText(getString(R.string.tempsValeurGame2,Double.toString(this.time)));
+        tempsVal.setText(getString(R.string.tempsValeurGame2, format.format(this.time)));
 
         Button continuer = findViewById(R.id.btnContinuer);
 
-        //TODO listener lançant le troisième et dernier jeu
         continuer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent game3 = new Intent(ScorePopUpGame2.this,Game2.class);
+                Intent game3 = new Intent(ScorePopUpGame2.this,EquationGame.class);
                 game3.putExtra("avg", scoreReactTime);
                 game3.putExtra("scores", scores);
+                game3.putExtra("time", time);
                 startActivity(game3);
             }
         });

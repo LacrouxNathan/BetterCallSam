@@ -3,6 +3,7 @@ package fr.kounecorp.bettercallsam.game2_noname;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.TextView;
 
@@ -37,12 +38,13 @@ public class Game2 extends Activity {
                 myCanvas.setInfoGameView(infoGame);
                 myCanvas.setChrono(chrono);
                 myCanvas.initializeFormes(CanvasView.NBFORMESGAME1);
+                chrono.setBase(SystemClock.elapsedRealtime());
                 chrono.start();
             }
         };
 
         Handler h = new Handler();
-        h.postDelayed(r, 200);
+        h.postDelayed(r, 500);
 
 
 
