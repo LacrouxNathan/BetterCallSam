@@ -83,7 +83,7 @@ public class ReflexeGameBilan extends Activity {
         scoreReactTimeView.setText(getString(R.string.moyenneValeur, scoreReactTime));
 
         // Bilan game Form Click
-        col = (scoresGame2[2] > 10) ? y : ((scoresGame2[2] >= 9) ? g : r);
+        col = (scoresGame2[2] == 12) ? y : ((scoresGame2[2] >= 9) ? g : r);
         scoreFormClickView.setTextColor(col);
         scoreFormClickView.setText(getResources().getQuantityString(R.plurals.scoreValeurGame2,
                 Math.abs(scoresGame2[2]),

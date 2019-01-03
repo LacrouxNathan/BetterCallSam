@@ -61,6 +61,7 @@ public class EquationGame extends Activity {
                 notifValider.setText(R.string.vide);
                 guess = "";
                 equationGuess.setText("???");
+                notifTime.setText("");
             }
         };
 
