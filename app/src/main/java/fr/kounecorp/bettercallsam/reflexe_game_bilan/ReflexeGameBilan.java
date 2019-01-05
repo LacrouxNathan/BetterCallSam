@@ -11,7 +11,7 @@ import android.widget.TextView;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-import fr.kounecorp.bettercallsam.Index;
+import fr.kounecorp.bettercallsam.AccueilAndConso.AccueilActivity;
 import fr.kounecorp.bettercallsam.R;
 
 public class ReflexeGameBilan extends Activity {
@@ -115,13 +115,14 @@ public class ReflexeGameBilan extends Activity {
         accueil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent reflexGameBilan = new Intent(ReflexeGameBilan.this,Index.class);
-                reflexGameBilan.putExtra("scoreReactTime", scoreReactTime);
-                reflexGameBilan.putExtra("scoresGame2", scoresGame2);
-                reflexGameBilan.putExtra("timeGame2", timeGame2);
-                reflexGameBilan.putExtra("errorsGame3", errorsGame3);
-                reflexGameBilan.putExtra("timesGame3", timesGame3);
-                startActivity(reflexGameBilan);
+                Intent accueil = new Intent(ReflexeGameBilan.this,AccueilActivity.class);
+                accueil.putExtra("scoreReactTime", scoreReactTime);
+                accueil.putExtra("scoresGame2", scoresGame2);
+                accueil.putExtra("timeGame2", timeGame2);
+                accueil.putExtra("errorsGame3", errorsGame3);
+                accueil.putExtra("timesGame3", timesGame3);
+                accueil.putExtra("userName", getIntent().getStringExtra("userName"));
+                startActivity(accueil);
             }
         });
 

@@ -9,12 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Index">
+
+        <activity android:name=".AccueilAndConso.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".AccueilAndConso.ListDataActivity" />
+        <activity android:name=".AccueilAndConso.PageAlcool" />
+        <activity android:name=".AccueilAndConso.AddInDataBase" />
+        <activity android:name=".AccueilAndConso.CreateUserActivity" />
+        <activity android:name=".AccueilAndConso.AccueilActivity" />
+        <activity android:name=".AccueilAndConso.ConsoActivity" />
+        <activity android:name=".AccueilAndConso.ConsoJour" />
 
         <activity android:name=".game1_reacttime.ReactTime">
             <intent-filter>

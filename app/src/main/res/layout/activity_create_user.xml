@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AccueilAndConso.CreateUserActivity">
+
+    <RelativeLayout
+
+
+        android:id="@+id/relativeLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+    <EditText
+        android:id="@+id/editTextNomC"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:editable="false"
+        android:textAlignment="center"/>
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:text="Nom Utilisateur" />
+
+    <EditText
+        android:id="@+id/editTextTailleC"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/editTextNomC"
+        android:layout_marginTop="20dp"
+        android:textAlignment="center" />
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:layout_below="@id/editTextNomC"
+        android:text="Taille (en cm)" />
+
+
+
+        <EditText
+            android:id="@+id/editTextPoidsC"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/editTextTailleC"
+            android:layout_marginTop="20dp"
+            android:textAlignment="center" />
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:layout_below="@id/editTextTailleC"
+            android:text="Poids (en kg)" />
+
+        <Button
+            android:id="@+id/btnAddUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft ="10dp"
+            android:text="OK" />
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>
