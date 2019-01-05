@@ -30,6 +30,7 @@ public class Game2 extends Activity {
 
         myCanvas.setScoreValueView(valScore);
         myCanvas.setScoreReactTime(getIntent().getIntExtra("avg",0));
+        myCanvas.setUserName(getIntent().getStringExtra("userName"));
 
         Runnable r = new Runnable() {
             @Override

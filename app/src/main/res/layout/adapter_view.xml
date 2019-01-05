@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="100">
+
+        <TextView
+            android:id="@+id/NOMALCOOLC"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="25"
+            android:gravity="center"
+            android:text="NomAlcool"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/NBVERREC"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="25"
+            android:gravity="center"
+            android:text="NbVerre"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/degC"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="25"
+            android:gravity="center"
+            android:text="deg"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/heureC"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="25"
+            android:gravity="center"
+            android:text="heure"
+            android:textAlignment="center"/>
+
+
+
+
+
+
+
+
+
+
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

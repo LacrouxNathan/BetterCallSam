@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AccueilAndConso.PageAlcool">
+
+    <RelativeLayout
+        android:id="@+id/overall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/relativeLayoutimg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            >
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/logo" />
+
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relativeLayouttitre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/relativeLayoutimg"
+            android:layout_centerHorizontal="true"
+            >
+
+            <TextView
+                android:id="@+id/nomalcool"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="50dp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relativeLayouttext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/relativeLayouttitre"
+            >
+
+            <TextView
+                android:id="@+id/degalcool"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text=""
+                android:textSize="30dp" />
+
+            <Button
+                android:id="@+id/btnAddAlconso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="10dp"
+                android:text="Ajouter Consommation" />
+
+            <TextView
+                android:id="@+id/nbverres"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/degalcool"
+                android:layout_marginTop="30dp"
+                android:text="Nombre de verres :"
+                android:textSize="30dp" />
+
+            <EditText
+                android:id="@+id/editTextNbV"
+                android:layout_width="45dp"
+                android:layout_height="60dp"
+                android:layout_below="@id/degalcool"
+                android:layout_alignBaseline="@id/nbverres"
+                android:layout_marginStart="10dp"
+                android:layout_toRightOf="@id/nbverres"
+                android:maxLength="2"
+                android:textAlignment="center"
+                android:textSize="30dp"
+                />
+
+            <TextView
+                android:id="@+id/addalcoolemie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nbverres"
+                android:layout_marginTop="30dp"
+                android:text=""
+                android:textSize="30dp" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+
+
+</android.support.constraint.ConstraintLayout>
