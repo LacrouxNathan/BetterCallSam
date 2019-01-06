@@ -3,8 +3,10 @@ package fr.kounecorp.bettercallsam.AccueilAndConso;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -18,20 +20,23 @@ public class ConsoJour extends AppCompatActivity {
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conso_jour);
         mDatabaseHelper = new DatabaseHelper(this);
         mListView = (ListView) findViewById(R.id.listViewConsoJour);
+
         Intent intent = getIntent();
         //récupération de l'ID de la conso
         final int iDC = intent.getExtras().getInt("position");
+        final String idU = intent.getExtras().getString("iduser");
         //récupération de la date de la conso
         String date = mDatabaseHelper.getDateWhereID(iDC+1);
         date = date.substring(0,10);
         Log.e("TEST",date);
-        Cursor data = mDatabaseHelper.getConsoWhereDateAndAlc(date,mDatabaseHelper.getIDAlcWhereIDCONSO(iDC+1));
+        Cursor data = mDatabaseHelper.getConsoWhereDateAndAlcAndUtil(date,mDatabaseHelper.getIDAlcWhereIDCONSO(iDC+1),idU);
         ArrayList<Consommer> consoJourList = new ArrayList<>();
 
         while (data.moveToNext()) {
@@ -54,5 +59,20 @@ public class ConsoJour extends AppCompatActivity {
 
 
 
+
+
+
+
+
+
+
+
+
+
     }
+
+
+
+
 }
+

@@ -64,6 +64,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE " +TABLE_NAME);
         db.execSQL("DROP TABLE " +TABLE2_NAME);
         db.execSQL("DROP TABLE " +TABLE3_NAME);
+        db.execSQL("DROP TABLE " +TABLE4_NAME);
         onCreate(db);
 
     }
@@ -226,13 +227,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return deg;
     }
 
-    public Cursor getConsoWhereDateAndAlc(String datec, int IdALC) {
+    public Cursor getConsoWhereDateAndAlcAndUtil(String datec, int IdALC,String idUtil) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM CONSOJOUR WHERE CONSOJOUR.HEURECONSOJOUR LIKE \'"+ datec +"%\' AND CONSOJOUR.IDALCOOL = \'"+IdALC+"\'";
+        String query = "SELECT * FROM CONSOJOUR WHERE CONSOJOUR.HEURECONSOJOUR LIKE \'"+ datec +"%\' AND CONSOJOUR.IDALCOOL = \'"+IdALC+"\' AND CONSOJOUR.IDUTIL = \'"+idUtil+"\'";
         Cursor data = db.rawQuery(query,null);
         return data;
 
     }
+
+
 
     public int getIDAlcWhereIDCONSO(int IDCONSO) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -248,6 +251,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
+
+
+
+
     public String getDateWhereID(int idConso) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM CONSOMMER WHERE CONSOMMER.IDCONSO = \'" +idConso +"\'";
@@ -261,14 +268,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
+    public void supprimerTouteConso(String idUt) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE3_NAME,COL21+"=" +idUt,null);
+        db.delete(TABLE4_NAME,COL21 +"=" +idUt,null);
 
-
-
-
-
-
-
-
-
-
+    }
 }
