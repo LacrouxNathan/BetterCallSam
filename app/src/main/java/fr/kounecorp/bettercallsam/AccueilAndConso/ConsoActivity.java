@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,6 +24,8 @@ public class ConsoActivity extends AppCompatActivity {
     DatabaseHelper mDatabaseHelper;
     ListView mListView;
     Button delAllConso;
+    TextView nomtexte,degtexte,nbverretexte,heuretexte;
+
 
 
     @Override
@@ -32,6 +35,10 @@ public class ConsoActivity extends AppCompatActivity {
         mDatabaseHelper = new DatabaseHelper(this);
         mListView = (ListView) findViewById(R.id.listViewConso);
         delAllConso = (Button) findViewById(R.id.delAllConso);
+        nomtexte = (TextView)findViewById(R.id.alctexte);
+        degtexte=findViewById(R.id.degtexte);
+        nbverretexte = findViewById(R.id.nbverretexte);
+        heuretexte = findViewById(R.id.heuretexte);
         Intent intent = getIntent();
         final String IDUser = intent.getExtras().getString("ID");
         Cursor data = mDatabaseHelper.getConsoWhereID(IDUser);

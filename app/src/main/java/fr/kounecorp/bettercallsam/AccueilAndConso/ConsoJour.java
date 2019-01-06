@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -17,6 +18,7 @@ public class ConsoJour extends AppCompatActivity {
 
     ListView mListView;
     DatabaseHelper mDatabaseHelper;
+    TextView nomtextej,degtextej,nbverretextej,heuretextej;
 
 
 
@@ -27,7 +29,10 @@ public class ConsoJour extends AppCompatActivity {
         setContentView(R.layout.activity_conso_jour);
         mDatabaseHelper = new DatabaseHelper(this);
         mListView = (ListView) findViewById(R.id.listViewConsoJour);
-
+        nomtextej = (TextView)findViewById(R.id.alctextej);
+        degtextej=findViewById(R.id.degtextej);
+        nbverretextej = findViewById(R.id.nbverretextej);
+        heuretextej = findViewById(R.id.heuretextej);
         Intent intent = getIntent();
         //récupération de l'ID de la conso
         final int iDC = intent.getExtras().getInt("position");
