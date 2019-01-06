@@ -17,19 +17,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "SAMDB";
 
+    //Définition du nom de la table alcool et des rubriques
     private static final String TABLE_NAME = "ALCOOL_TABLE";
     private static final String COL1 = "IDALCOOL";
     private static final String COL2 = "NOM";
     private static final String COL3 = "DEGRE";
+
+    //Définition du nom de la table utilisateur et des rubriques
     private static final String TABLE2_NAME = "UTILISATEUR";
     private static final String COL21 = "IDUTIL";
     private static final String COL22 = "TAILLE";
     private static final String COL23 = "POIDS";
     private static final String COL24 = "NOM";
+
+    //Définition du nom de la table consommer et des rubriques
     private static final String TABLE3_NAME = "CONSOMMER";
     private static final String COL33 = "IDCONSO";
     private static final String COL31 = "NBVERRE";
     private static final String COL32 = "HEURE";
+
+    //Définition du nom de la table consommer jour et des rubriques
     private static final String TABLE4_NAME = "CONSOJOUR";
     private static final String COL41 = "IDCONSOJOUR";
     private static final String COL42 = "NBVERREHEURE";
@@ -37,11 +44,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-
+    //Création de la base de données
     public DatabaseHelper(Context context) {
         super(context, DB_NAME,null,1);
     }
 
+    //Création des tables
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createTable = "CREATE TABLE " +TABLE_NAME +" ("+COL1 +" INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -58,7 +66,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(createTable4);
     }
 
-
+    //Mise a jour de la base de données
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE " +TABLE_NAME);
@@ -69,7 +77,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-
+    //Ajout d'un alcool à la base de données
     public void addInfo(String nom, int degre, SQLiteDatabase db) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(Alcool.NewAlcoolInfo.NOM_ALCOOL,nom);
@@ -79,12 +87,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    //Suppression de tous les alcools dans la base de données
     public void delAllInfo(SQLiteDatabase db) {
         db.delete(TABLE_NAME,null,null);
         db.execSQL("DELETE FROM SQLITE_SEQUENCE WHERE NAME = \'" + TABLE_NAME + "\'");
 
     }
 
+    //Récupération de tous les alcools de la base de données
     public Cursor getData() {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM " + TABLE_NAME;
@@ -92,6 +102,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return data;
     }
 
+    //Création d'un objet alcool à partir de la base de données
     public Alcool getDataWhereId(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM ALCOOL_TABLE WHERE IDALCOOL = " +id;
@@ -110,6 +121,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return A;
     }
 
+    //Ajout de consommation d'un utilisateur
     public void addConsomation(int IDUSER, int IDALCOOL, int NBVERRE) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -118,7 +130,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String strDate = sdf.format(new Date());
         SimpleDateFormat sdfOnlyD = new SimpleDateFormat("yyyy-MM-dd");
         String strDateOnlyD = sdfOnlyD.format(new Date());
-        Log.e("TESTTTTTT",strDateOnlyD);
         //ajout a la table consommation du jour
         contentValuesJour.put(Consommer.NewConsoInfoJour.ID_ALCOOL,IDALCOOL);
         contentValuesJour.put(Consommer.NewConsoInfoJour.ID_UTIL,IDUSER);
@@ -136,14 +147,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             contentValues.put(Consommer.NewConsoInfo.HEURE,strDate);
             db.insert(Consommer.NewConsoInfo.TABLE_NAME,null,contentValues);
         } else {
-            Log.e("SLT","this is a test");
             updateNbVerres(IDUSER,IDALCOOL,NBVERRE,strDateOnlyD);
 
         }
 
-        Log.e("Database operations","row inserted");
     }
 
+    //Test vérifiant si l'utilsateur à déjà consommer un alcool le jour donné
     public boolean getIfAlcoolDejaConsoAujd(int IDUSER, int IDALCOOL, String DATEH) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM CONSOMMER WHERE CONSOMMER.IDUTIL = \'" +IDUSER +"\' AND CONSOMMER.IDALCOOL =\'" +IDALCOOL +"\' AND CONSOMMER.HEURE LIKE \'"+ DATEH +"%\'";
@@ -156,12 +166,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return ret;
     }
 
+    //Mise à jour du nombre de verres consommé par un utilisateur
     public void updateNbVerres(int IDUSER, int IDALCOOL, int NB, String DATEH) {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "UPDATE CONSOMMER SET NBVERRE = NBVERRE + \'" +NB +"\' WHERE CONSOMMER.IDUTIL = \'" +IDUSER +"\' AND CONSOMMER.IDALCOOL =\'" +IDALCOOL +"\' AND CONSOMMER.HEURE LIKE \'"+ DATEH +"%\'";
         db.execSQL(query);
     }
 
+    //Récupération d'un utilisateur de nom donné
     public Utilisateur getUserWhereName(String nom) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM UTILISATEUR WHERE UTILISATEUR.NOM = \'" +nom +"\'";
@@ -178,6 +190,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return U;
     }
 
+    //Récupération de l'ID d'un utilisateur à l'aide de son nom
     public String getIDWhereName(String nom) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM UTILISATEUR WHERE UTILISATEUR.NOM = \'" +nom +"\'";
@@ -190,6 +203,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return ID;
     }
 
+    //Création d'un utilisateur
     public void createUser(String name,int taille, int poids, SQLiteDatabase db) {
         String IDTEST = getIDWhereName(name);
         if (IDTEST == "") {
@@ -205,6 +219,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    //Récupération de la consommation d'un utilisateur avec son ID
     public Cursor getConsoWhereID(String IDUtil) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM CONSOMMER WHERE CONSOMMER.IDUTIL = \'" +IDUtil +"\'";
@@ -214,7 +229,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
+    //Retourne toute la consommation d'un utilisateur pour un jour donné
+    public Cursor getConsoWhereIDAndDate(String IDUtil, String datec) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM CONSOJOUR WHERE CONSOJOUR.HEURECONSOJOUR LIKE \'"+ datec +"%\' AND CONSOJOUR.IDUTIL = \'"+IDUtil+"\'";
+        Cursor data = db.rawQuery(query,null);
+        return data;
+    }
 
+
+    //Retourne le degré d'un alcool d'un ID Donné
     public int getDegWhereID (String IDAlcool) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM ALCOOL_TABLE WHERE ALCOOL_TABLE.IDALCOOL = \'" +IDAlcool +"\'";
@@ -227,6 +251,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return deg;
     }
 
+    //Récupération del a consommation pour une date, un alcool et un utilisateur donnés
     public Cursor getConsoWhereDateAndAlcAndUtil(String datec, int IdALC,String idUtil) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM CONSOJOUR WHERE CONSOJOUR.HEURECONSOJOUR LIKE \'"+ datec +"%\' AND CONSOJOUR.IDALCOOL = \'"+IdALC+"\' AND CONSOJOUR.IDUTIL = \'"+idUtil+"\'";
@@ -236,7 +261,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-
+    //Récupréation de l'ID de l'alcool pour une consommation donnée
     public int getIDAlcWhereIDCONSO(int IDCONSO) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM CONSOMMER WHERE CONSOMMER.IDCONSO = \'" +IDCONSO +"\'";
@@ -254,7 +279,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-
+    //Récupréation de la date d'une consommation
     public String getDateWhereID(int idConso) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM CONSOMMER WHERE CONSOMMER.IDCONSO = \'" +idConso +"\'";
@@ -267,7 +292,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return Date;
     }
 
-
+    //Suppression de toute la consommation d'un utilisateur
     public void supprimerTouteConso(String idUt) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE3_NAME,COL21+"=" +idUt,null);

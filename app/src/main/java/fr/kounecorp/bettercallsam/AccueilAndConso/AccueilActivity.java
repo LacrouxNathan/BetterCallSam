@@ -1,6 +1,7 @@
 package fr.kounecorp.bettercallsam.AccueilAndConso;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import fr.kounecorp.bettercallsam.R;
 
@@ -83,6 +86,22 @@ public class AccueilActivity extends AppCompatActivity {
 
 
 
+    }
+
+    protected ArrayList<Consommer> getConsoUtilisateur(String IDUtilisateur, String dateC) {
+        Cursor data = mDatabaseHelper.getConsoWhereIDAndDate(IDUtilisateur,dateC);
+        ArrayList<Consommer> consoJourList = new ArrayList<>();
+        while (data.moveToNext()) {
+            String idAlc = data.getString(1);
+            int nbV = data.getInt(3);
+            String heure = data.getString(4);
+            int deg = mDatabaseHelper.getDegWhereID(idAlc);
+            String nomAlc = mDatabaseHelper.getDataWhereId(Integer.parseInt(idAlc)).getNomAlc();
+            Consommer C = new Consommer(nomAlc, nbV, heure, deg);
+            consoJourList.add(C);
+        }
+
+        return consoJourList;
     }
 
 
