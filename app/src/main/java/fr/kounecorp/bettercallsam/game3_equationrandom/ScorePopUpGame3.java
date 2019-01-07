@@ -71,6 +71,7 @@ public class ScorePopUpGame3 extends Activity {
                 reflexGameBilan.putExtra("timeGame2", timeGame2);
                 reflexGameBilan.putExtra("errorsGame3", errorsGame3);
                 reflexGameBilan.putExtra("timesGame3", timesGame3);
+                reflexGameBilan.putExtra("userName", getIntent().getStringExtra("userName"));
                 startActivity(reflexGameBilan);
             }
         });
@@ -87,7 +88,7 @@ public class ScorePopUpGame3 extends Activity {
 
     @Override
     public void onBackPressed() {
-        // Empeche l'utilisateur a faire retour, il est obligé de cliquer sur "Continuer"
+        // Empeche l'utilisateur a faire retour, il est obligé de cliquer sur "Continuer"a
         Toast.makeText(getApplicationContext(), R.string.BackInfo, Toast.LENGTH_SHORT).show();
     }
 

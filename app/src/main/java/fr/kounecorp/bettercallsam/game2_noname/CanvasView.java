@@ -22,6 +22,7 @@ public class CanvasView extends View {
     public static final int NBFORMESGAME1 = 3;
 
     private int scoreReactTime;
+    private String userName;
 
     private int width;
     private int height;
@@ -159,6 +160,10 @@ public class CanvasView extends View {
         this.scoreReactTime = score;
     }
 
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     public void setInfoGameView(TextView t) {
         this.infoGame = t;
         this.infoGame.setTextColor(getResources().getColor(android.R.color.black));
@@ -197,6 +202,7 @@ public class CanvasView extends View {
         scorePopUp.putExtra("avg", this.scoreReactTime);
         scorePopUp.putExtra("scores", this.scores);
         scorePopUp.putExtra("time", this.chrono.getTimeElapsedInSeconds());
+        scorePopUp.putExtra("userName", userName);
         this.getContext().startActivity(scorePopUp);
     }
 

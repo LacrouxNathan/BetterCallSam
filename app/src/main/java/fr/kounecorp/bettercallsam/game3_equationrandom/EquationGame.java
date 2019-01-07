@@ -74,6 +74,7 @@ public class EquationGame extends Activity {
                 scorePopUp.putExtra("time", getIntent().getDoubleExtra("time",0));
                 scorePopUp.putExtra("errors", errors);
                 scorePopUp.putExtra("timesResolutions", times);
+                scorePopUp.putExtra("userName", getIntent().getStringExtra("userName"));
                 startActivity(scorePopUp);
             }
         };

@@ -38,6 +38,7 @@ public class ScorePopUp extends Activity {
             public void onClick(View v) {
                 Intent game2 = new Intent(ScorePopUp.this,Game2.class);
                 game2.putExtra("avg", avg);
+                game2.putExtra("userName", getIntent().getStringExtra("userName"));
                 startActivity(game2);
             }
         });

@@ -80,6 +80,7 @@ public class ScorePopUpGame2 extends Activity {
                 game3.putExtra("avg", scoreReactTime);
                 game3.putExtra("scores", scores);
                 game3.putExtra("time", time);
+                game3.putExtra("userName", getIntent().getStringExtra("userName"));
                 startActivity(game3);
             }
         });

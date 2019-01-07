@@ -134,6 +134,7 @@ public class ReactTime extends AppCompatActivity {
     private void lunchPopUp() {
         Intent scorePopUp = new Intent(ReactTime.this,ScorePopUp.class);
         scorePopUp.putExtra("avg", avg);
+        scorePopUp.putExtra("userName", getIntent().getStringExtra("userName"));
         startActivity(scorePopUp);
     }
 
