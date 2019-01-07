@@ -1,5 +1,6 @@
 package fr.kounecorp.bettercallsam.preferencePage;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,7 @@ public class preference extends AppCompatActivity {
     private EditText taille,poids;
     private RadioButton rMale, rFemale;
     private Button bSave;
+    private Button retour;
 
     public static final String SHARED_PREFS = "Preference";
     public static final String TAILLE = "Taille";
@@ -34,11 +36,19 @@ public class preference extends AppCompatActivity {
         this.rMale = (RadioButton)findViewById(R.id.rb_male);
 
         this.bSave = (Button)findViewById(R.id.Button_save);
+        this.retour =(Button)findViewById(R.id.button_retour);
 
         bSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 sauvegarder();
+            }
+        });
+        retour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent index= new Intent(preference.this,fr.kounecorp.bettercallsam.Index.class);
+                startActivity(index);
             }
         });
         charger();
@@ -54,6 +64,8 @@ public class preference extends AppCompatActivity {
 
         editor.apply();
         Toast.makeText(this,"Données Sauvegardés",Toast.LENGTH_SHORT).show();
+        Intent index= new Intent(preference.this,fr.kounecorp.bettercallsam.Index.class);
+        startActivity(index);
 
     }
 
