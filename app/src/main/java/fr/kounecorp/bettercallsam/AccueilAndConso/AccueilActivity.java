@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import fr.kounecorp.bettercallsam.R;
@@ -47,6 +48,7 @@ public class AccueilActivity extends AppCompatActivity {
         U = mDatabaseHelper.getUserWhereName(name);
 
         nomuser.setText(String.valueOf(U.getName()));
+        ArrayList<Consommer> test = getConsoUtilisateur(ID);
 
 
         btnAddConso.setOnClickListener(new View.OnClickListener() {
@@ -61,7 +63,6 @@ public class AccueilActivity extends AppCompatActivity {
         btnViewConso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                calculertaux(ID);
                 Intent intent = new Intent(AccueilActivity.this, ConsoActivity.class);
                 intent.putExtra("ID",ID);
                 startActivity(intent);
@@ -97,8 +98,7 @@ public class AccueilActivity extends AppCompatActivity {
                 startActivity(setting);
             }
         });
-
-        calculertaux(ID);
+        calculertaux(ID,test);
 
     }
 
@@ -114,25 +114,26 @@ public class AccueilActivity extends AppCompatActivity {
             Consommer C = new Consommer(nomAlc, nbV, heure, deg);
             consoJourList.add(C);
         }
-
         return consoJourList;
     }
 
 
-    private void calculertaux(String IDUtilisateur) {
+    private void calculertaux(String IDUtilisateur,ArrayList<Consommer> a) {
         SharedPreferences sp = getSharedPreferences(getString(R.string.SHARED_PREFS), MODE_PRIVATE);
         boolean sexeMale = sp.getBoolean(getString(R.string.SEXE),true);
         double coef = (sexeMale) ? 0.7 : 0.6;
         double poids = Double.valueOf(sp.getString(getString(R.string.POIDS),"70"));
 
         double somme = 0;
-        for(Consommer c : getConsoUtilisateur(IDUtilisateur)) {
-            somme += c.getNbVerres();
+        for(Consommer c : a) {
+            somme += c.getNbVerres()+(c.getDeg()/10);
         }
 
-        double conso = (somme * 10)/poids*coef;
+        double conso = ((somme * 10)/poids*coef);
+        DecimalFormat f = new DecimalFormat("##.00");
 
-        tvconso.setText(String.valueOf(conso));
+        tvconso.setText(String.valueOf(f.format(conso)));
+
 
     }
 

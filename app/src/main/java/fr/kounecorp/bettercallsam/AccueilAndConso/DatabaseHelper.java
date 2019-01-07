@@ -296,11 +296,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void supprimerTouteConso(String idUt) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE3_NAME,COL21+"=" +idUt,null);
-        String query ="delete from sqlite_sequence where name=\'CONSOJOUR\'";
-        String query2 ="delete from sqlite_sequence where name=\'CONSOMMER\'";
-        db.execSQL(query);
-        db.execSQL(query2);
         db.delete(TABLE4_NAME,COL21 +"=" +idUt,null);
+        db.execSQL("UPDATE sqlite_sequence SET seq = 1 WHERE name = \'"+TABLE3_NAME+"\'");
+        db.execSQL("UPDATE sqlite_sequence SET seq = 1 WHERE name = \'"+TABLE4_NAME+"\'");
+        db.execSQL("DELETE FROM SQLITE_SEQUENCE WHERE NAME = \'" + TABLE3_NAME + "\' ");
+        db.execSQL("DELETE FROM SQLITE_SEQUENCE WHERE NAME = \'" + TABLE4_NAME + "\' x");
 
     }
 }
