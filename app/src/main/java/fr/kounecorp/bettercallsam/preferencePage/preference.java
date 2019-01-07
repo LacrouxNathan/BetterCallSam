@@ -47,7 +47,7 @@ public class preference extends AppCompatActivity {
         retour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent index= new Intent(preference.this,fr.kounecorp.bettercallsam.Index.class);
+                Intent index= new Intent(preference.this,fr.kounecorp.bettercallsam.AccueilAndConso.AccueilActivity.class);
                 startActivity(index);
             }
         });
@@ -64,7 +64,7 @@ public class preference extends AppCompatActivity {
 
         editor.apply();
         Toast.makeText(this,"Données Sauvegardés",Toast.LENGTH_SHORT).show();
-        Intent index= new Intent(preference.this,fr.kounecorp.bettercallsam.Index.class);
+        Intent index= new Intent(preference.this,fr.kounecorp.bettercallsam.AccueilAndConso.AccueilActivity.class);
         startActivity(index);
 
     }

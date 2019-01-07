@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import fr.kounecorp.bettercallsam.Index;
 import fr.kounecorp.bettercallsam.R;
 
 
@@ -24,6 +25,8 @@ public class AccueilActivity extends AppCompatActivity {
 
     private Utilisateur U;
 
+    private Button setting;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +37,7 @@ public class AccueilActivity extends AppCompatActivity {
         btnViewConso = findViewById(R.id.btnViewConso);
         nomuser = findViewById(R.id.nomuser);
         textJeux = findViewById(R.id.textJeux);
-        deco = findViewById(R.id.deco);
+        setting = findViewById(R.id.btnSetting);
 
         Intent intent = getIntent();
         String name = intent.getExtras().getString("userName");
@@ -43,6 +46,13 @@ public class AccueilActivity extends AppCompatActivity {
 
         nomuser.setText(String.valueOf(U.getName()));
 
+        this.setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent setting = new Intent(AccueilActivity.this,fr.kounecorp.bettercallsam.preferencePage.preference.class);
+                startActivity(setting);
+            }
+        });
 
         btnAddConso.setOnClickListener(new View.OnClickListener() {
             @Override
