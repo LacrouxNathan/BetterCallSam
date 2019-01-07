@@ -54,4 +54,9 @@
     <string name="etatAttention">&lt;font color=\"#F0C300\">Reflexe un peu faible.&lt;/font>&lt;br/>Veuillez faire attention lors de vos prochains déplacements.</string>
     <string name="etatDangereux">&lt;font color=\"#ED0000\">Reflexe très faible !&lt;/font>&lt;br/>Veuillez joindre un ami capable de vous prendre en main.</string>
 
+    <string name="SHARED_PREFS">Preference</string>
+    <string name="TAILLE">Taille</string>
+    <string name="POIDS">Poids</string>
+    <string name="SEXE">Sexe</string>
+
 </resources>

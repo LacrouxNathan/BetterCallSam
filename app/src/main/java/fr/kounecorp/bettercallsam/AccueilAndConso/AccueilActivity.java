@@ -1,6 +1,7 @@
 package fr.kounecorp.bettercallsam.AccueilAndConso;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -17,7 +18,7 @@ import fr.kounecorp.bettercallsam.R;
 
 public class AccueilActivity extends AppCompatActivity {
 
-    private TextView nomuser,textJeux,deco;
+    private TextView nomuser,textJeux,deco,tvconso;
 
     private DatabaseHelper mDatabaseHelper;
     private Button btnAddConso, btnViewConso;
@@ -38,6 +39,7 @@ public class AccueilActivity extends AppCompatActivity {
         textJeux = findViewById(R.id.textJeux);
         deco = findViewById(R.id.deco);
         setting = (Button)findViewById(R.id.btnSetting);
+        tvconso = (TextView)findViewById(R.id.Tvconso);
 
         Intent intent = getIntent();
         String name = intent.getExtras().getString("userName");
@@ -59,6 +61,7 @@ public class AccueilActivity extends AppCompatActivity {
         btnViewConso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                calculertaux(ID);
                 Intent intent = new Intent(AccueilActivity.this, ConsoActivity.class);
                 intent.putExtra("ID",ID);
                 startActivity(intent);
@@ -95,11 +98,12 @@ public class AccueilActivity extends AppCompatActivity {
             }
         });
 
+        calculertaux(ID);
 
     }
 
-    protected ArrayList<Consommer> getConsoUtilisateur(String IDUtilisateur, String dateC) {
-        Cursor data = mDatabaseHelper.getConsoWhereIDAndDate(IDUtilisateur,dateC);
+    protected ArrayList<Consommer> getConsoUtilisateur(String IDUtilisateur) {
+        Cursor data = mDatabaseHelper.getConsoWhereID(IDUtilisateur);
         ArrayList<Consommer> consoJourList = new ArrayList<>();
         while (data.moveToNext()) {
             String idAlc = data.getString(1);
@@ -115,6 +119,21 @@ public class AccueilActivity extends AppCompatActivity {
     }
 
 
+    private void calculertaux(String IDUtilisateur) {
+        SharedPreferences sp = getSharedPreferences(getString(R.string.SHARED_PREFS), MODE_PRIVATE);
+        boolean sexeMale = sp.getBoolean(getString(R.string.SEXE),true);
+        double coef = (sexeMale) ? 0.7 : 0.6;
+        double poids = Double.valueOf(sp.getString(getString(R.string.POIDS),"70"));
 
+        double somme = 0;
+        for(Consommer c : getConsoUtilisateur(IDUtilisateur)) {
+            somme += c.getNbVerres();
+        }
+
+        double conso = (somme * 10)/poids*coef;
+
+        tvconso.setText(String.valueOf(conso));
+
+    }
 
 }

@@ -11,30 +11,31 @@
     <RelativeLayout
         android:id="@+id/overall"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <Button
             android:id="@+id/btnSetting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="profil"
-            android:layout_alignParentRight="true"/>
-    <RelativeLayout
-        android:id="@+id/relativeLayoutimg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        >
+            android:layout_alignParentRight="true"
+            android:text="profil" />
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@drawable/logo"
-        />
+        <RelativeLayout
+            android:id="@+id/relativeLayoutimg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/logo" />
 
 
-    </RelativeLayout>
+        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/relativelayoutid"
@@ -62,65 +63,67 @@
                 />
 
 
-
-
         </RelativeLayout>
 
 
-
-
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/relativeLayoutimg">
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/roundtest"
-
-            />
-
-        <TextView
-            android:id="@+id/textJeux"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/relativeLayout3"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/imageView2"
-            android:layout_centerHorizontal="true"
-            android:clickable="true"
-            android:text="Teste tes reflexes !"
-            android:textColor="@android:color/holo_blue_light"
-            android:textSize="20dp"
+            android:layout_below="@id/relativeLayoutimg">
 
-            />
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/roundtest" />
+
+            <TextView
+                android:id="@+id/Tvconso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="113dp"
+                android:layout_marginTop="86dp"
+                android:text="0"
+                android:textColor="@android:color/black"
+                android:textSize="30dp" />
+
+            <TextView
+                android:id="@+id/textJeux"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imageView2"
+                android:layout_centerHorizontal="true"
+                android:clickable="true"
+                android:text="Teste tes reflexes !"
+                android:textColor="@android:color/holo_blue_light"
+                android:textSize="20dp"
+
+                />
 
 
+            <Button
+                android:id="@+id/btnAddConso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imageView2"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:text="Ajouter Consommation" />
+
+            <Button
+                android:id="@+id/btnViewConso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btnAddConso"
+                android:layout_centerHorizontal="true"
+                android:text="Ma Consommation" />
 
 
-        <Button
-            android:id="@+id/btnAddConso"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/imageView2"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:text="Ajouter Consommation" />
-
-        <Button
-            android:id="@+id/btnViewConso"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/btnAddConso"
-            android:layout_centerHorizontal="true"
-            android:text="Ma Consommation" />
-
-
-
-    </RelativeLayout>
+        </RelativeLayout>
     </RelativeLayout>
 
 
