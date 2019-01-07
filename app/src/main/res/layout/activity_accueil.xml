@@ -13,6 +13,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <Button
+            android:id="@+id/btnSetting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="profil"
+            android:layout_alignParentRight="true"/>
     <RelativeLayout
         android:id="@+id/relativeLayoutimg"
         android:layout_width="wrap_content"
@@ -43,18 +49,19 @@
 
                 />
 
-            <Button
-                android:id="@+id/btnSetting2"
+            <TextView
+                android:id="@+id/deco"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/nomuser"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:text="profil"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_below="@id/nomuser"
+                android:clickable="true"
+                android:text="Se déconnecter"
+                android:textColor="@android:color/holo_blue_light"
+                android:textSize="15dp"
+
+                />
+
+
 
 
         </RelativeLayout>

@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("userName",editTextNomU.getText().toString());
                     startActivity(intent);
                 } else {
-                    Intent intent = new Intent(MainActivity.this, AccueilActivity.class);
+                    Intent intent = new Intent(MainActivity.this, fr.kounecorp.bettercallsam.AccueilAndConso.AccueilActivity.class);
                     intent.putExtra("userName",editTextNomU.getText().toString());
                     startActivity(intent);
                 }
